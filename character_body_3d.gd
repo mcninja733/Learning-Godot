@@ -50,11 +50,18 @@ func _physics_process(delta: float) -> void:
 	move_direction = move_direction.normalized()
 
 
-
+	# For future reference, velocity.y is returned passed zero inside of the last line.
 	var y_velocity := velocity.y
 	velocity.y = 0.0
 	velocity = velocity.move_toward(move_direction * VariableHandler.move_speed, VariableHandler.acceleration * delta)
 	velocity.y = y_velocity + VariableHandler.player_gravity * delta
+	
+	# The original variable created helps determine if the conditions to jump are right
+	# Afterwards if it comes back as true, it sets velocity of how far we are going up to 12 allowing us to go up and then
+	# as gravity subtracts to it(along with delta multiplied by it) it slows down the jump until eventually we fall down.
+	var _is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
+	if _is_starting_jump:
+		velocity.y += VariableHandler.jump_power
 	
 	if VariableHandler.movement_enabled:
 		move_and_slide()
