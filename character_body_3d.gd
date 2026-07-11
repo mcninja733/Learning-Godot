@@ -38,10 +38,13 @@ func _physics_process(delta: float) -> void:
 		_camera_pivot.rotation.y -= _camera_input_direction.x * delta
 		_camera_input_direction = Vector2.ZERO
 
+# based on the funtion turns those into either coordinates 2D wise like 1,0
 	var raw_input := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var forward := _camera.global_basis.z
 	var right := _camera.global_basis.x
 
+# move_direction is just the basis along with the actual input combined together
+# move_direction.y also becomes 0.0 to disable moving up and down too
 	var move_direction := forward * raw_input.y + right * raw_input.x
 	move_direction.y = 0.0
 	move_direction = move_direction.normalized()
