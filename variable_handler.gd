@@ -24,3 +24,22 @@ var player_gravity := -30.0
 #"Enabled" variables
 var camera_enabled := true
 var movement_enabled := true
+
+
+
+# Race rolling function that is called upon from main menu for now
+
+var _race_rarities = {
+	Common = 50,
+	Rare = 35,
+	Legendary = 15,
+}
+
+func race_gacha():
+	var _gachanumb = randi_range(1, 100)
+	print(_gachanumb)
+	for rarity in _race_rarities:
+		_gachanumb -= _race_rarities[rarity]
+		
+		if _gachanumb <= 0:
+			return rarity
