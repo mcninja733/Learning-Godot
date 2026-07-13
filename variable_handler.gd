@@ -30,9 +30,11 @@ var movement_enabled := true
 # Race rolling function that is called upon from main menu for now
 
 var _race_rarities = {
-	Common = 50,
+	Common = 60,
 	Rare = 35,
-	Legendary = 15,
+	Legendary = 4.4,
+	Mythic = 0.5,
+	Primal = 0.1,
 }
 
 func race_gacha():
