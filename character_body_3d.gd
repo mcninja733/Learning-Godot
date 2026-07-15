@@ -32,6 +32,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 #Camera movement through mouse movement is here
 func _physics_process(delta: float) -> void:
+	# Changes how far before te slide and move stats to slide downwards
+	floor_max_angle = deg_to_rad(60.0)
 	if VariableHandler.camera_enabled:
 		_camera_pivot.rotation.x -= _camera_input_direction.y * delta
 		_camera_pivot.rotation.x = clamp(_camera_pivot.rotation.x, -PI / 6.0, PI / 3.0)
